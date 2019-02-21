@@ -155,9 +155,22 @@ function rangePlugin(config: Config = {}): Plugin {
 
         if (_prevDates.length > selDates.length) {
           const newSelectedDate = selDates[0];
+          const nextDate = (function(date) {
+            let tempDate = new Date(date);
+            tempDate.setDate(tempDate.getDate() + 1);
+
+            return tempDate;
+          })(newSelectedDate);
+
+          const isAheadPrevEndDate =
+            new Date(newSelectedDate).getTime() >
+            new Date(_prevDates[1]).getTime();
+
           const newDates = _secondInputFocused
             ? [_prevDates[0], newSelectedDate]
-            : [newSelectedDate, _prevDates[1]];
+            : isAheadPrevEndDate
+              ? [newSelectedDate, nextDate]
+              : [newSelectedDate, _prevDates[1]];
 
           fp.setDate(newDates, false);
           _prevDates = [...newDates];
