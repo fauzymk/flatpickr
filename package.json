@@ -61,7 +61,7 @@
   "types": "./dist/typings.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chmln/flatpickr.git"
+    "url": "git+https://github.com/fauzymk/flatpickr.git"
   },
   "author": "Gregory <gregory.mkv@gmail.com>",
   "license": "MIT",
